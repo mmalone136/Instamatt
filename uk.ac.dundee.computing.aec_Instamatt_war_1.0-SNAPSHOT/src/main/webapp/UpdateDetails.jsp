@@ -28,6 +28,7 @@
     </nav>
 </head>
 <body id="page">
+    <div>
     <h1>Hello World!</h1>
 
     <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -40,7 +41,7 @@
 <form method="POST"  action="update" >
     <ul>
         <input type="hidden" name="user" value="<%=currUser%>">
-        <li>First Name   <input style="margin-left:50px"type="text" name="first_name"></li><br><br>
+        <li>First Name   <input style="margin-left:50px"type="text" name="first_name"></li><br><br><br>
         <li>Surname      <input style="margin-left:65px"type="text" name="last_name"></li><br><br>
         <li>Email        <input style="margin-left:82px"type="email" name="email"></li><br><br>
 
@@ -51,12 +52,11 @@
     <input type="submit" value="UPDATE"> 
 </form>
 
-
-
-<form style="float:right;" method="POST" enctype="multipart/form-data" action="Image">
-    File to upload: <input type="file" name="upfile">
-    <input type ="hidden" name="check" value="1">
-    <br>
+    </div>
+        
+<form style="float:right; margin-right:80px; margin-top:100px" method="POST" enctype="multipart/form-data" action="Image">
+    Profile picture to upload: <br><br><input type="file" name="upfile"><br>
+    <input type ="hidden" name="check" value="1"><br>
     <input type="submit" value="Press"> to upload the file!
 </form>
 

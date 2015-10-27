@@ -20,8 +20,8 @@
                 <li class="nav"><a href="upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/instamatt/Images/majed">Sample Images</a></li>
                 <form id="search" method="GET" action="search" >
-                <input type="text" name="target" />
-                <input type='submit' />
+                <input type="text" name="target">
+                <input type='submit'>
             </form>
 
             </ul>
@@ -30,10 +30,10 @@
         <article>
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
+                File to upload: <input type="file" name="upfile"><br>
                 <input type ="hidden" name="check" value="0">
 
-                <br/>
+                <br>
                 <input type="submit" value="Press"> to upload the file!
             </form>
 

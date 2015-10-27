@@ -46,12 +46,18 @@ public class Profile extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- String url = request.getRequestURL().toString();
+ //String url = request.getRequestURL().toString();
         
-        String Username;
-        //= request.getParameter("username");
+        String Username = request.getParameter("username");
 
-        Username = getUserFromUrl(url);
+       // out.println("====================== " + Username);
+        
+        //String name = (String) request.
+                //getAttribute("username");
+
+        //out.println("---------------------- " + name);
+        
+        //Username = getUserFromUrl(url);
         Set<String> email = null;
         String first_name = "";
         String last_name = "";

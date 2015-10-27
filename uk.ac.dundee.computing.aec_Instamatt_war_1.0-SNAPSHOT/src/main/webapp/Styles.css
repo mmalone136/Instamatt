@@ -151,6 +151,19 @@ margin-top: 30px; margin-left: 70px; padding-right:50px; float:left;
 margin-bottom:40px;
 }
 
+#buttonTwo{
+    
+     background:none;
+     border:none; 
+     padding:0;
+     font: inherit;
+     font-weight:bold;
+     color: green;
+     cursor: pointer;
+    
+    
+    
+}
 
 #search{
     float:right;

@@ -47,10 +47,10 @@ public final class Keyspaces {
                     + "      first_name text,\n"
                     + "      last_name text,\n"
                     + "      email set<text>,\n"
-                    + "      addresses  map<text, frozen <address>>\n"
+                    + "      addresses  map<text, frozen <address>>,\n"
+                    + "      profpic  UUID\n"
                     + "  );";
-                   
-            
+
             String CreateComments = "CREATE TABLE if not exists instamatt.comments (\n"
                     + "      picid uuid,\n"
                     + "      userleft text,\n"
@@ -58,9 +58,8 @@ public final class Keyspaces {
                     + "      timeleft timestamp,\n"
                     + "      PRIMARY KEY(timeleft, picid)\n"
                     + "  );";
-            
+
             //CREATE TABLE if not exists comments(picid uuid,userleft text,comment text,timeleft timeUUID, PRIMARY KEY(timeleft, picid));
-            
             Session session = c.connect();
             try {
                 PreparedStatement statement = session
@@ -82,10 +81,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create tweet table " + et);
             }
-            
-            
-            
-            
+
             System.out.println("" + CreateComments);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateComments);
@@ -93,11 +89,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create comemnt table " + et);
             }
-            
-                    
-                    
-                    
-            
+
             System.out.println("" + Createuserpiclist);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(Createuserpiclist);
@@ -105,7 +97,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create user pic list table " + et);
             }
-            
+
             System.out.println("" + CreateAddressType);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateAddressType);
@@ -113,7 +105,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create Address type " + et);
             }
-            
+
             System.out.println("" + CreateUserProfile);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateUserProfile);
@@ -121,8 +113,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create Address Profile " + et);
             }
-            
-            
+
             session.close();
 
         } catch (Exception et) {

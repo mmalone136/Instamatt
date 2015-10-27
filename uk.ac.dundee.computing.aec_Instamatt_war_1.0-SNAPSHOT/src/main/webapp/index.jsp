@@ -30,7 +30,7 @@
 
     </nav>
 </head>
-<body id="page" >
+<body id="page">
 
     <p >
         <br><br>  <br><br>       
@@ -44,9 +44,21 @@
         %>
 
 <li><a href="/instamatt/Images/<%=lg.getUsername()%>">Your Images</a></li>
-<li><a href="/instamatt/profile/<%=lg.getUsername()%>">Your Profile</a></li> 
 
-<form action="LogOut" method="POST">
+<%
+    //session.setAttribute("username",lg.getUsername());
+%>
+<!--<li><a  href="/instamatt/profile/<%=lg.getUsername()%>">Your Profile</a></li>-->
+
+<form method="GET" Action="profile/<%=lg.getUsername()%>">
+     <input type="hidden" value="<%=lg.getUsername()%>" name="username">
+    <input id="buttonTwo" type="submit" value="Your Profile">
+    
+</form>
+   
+
+
+<form style=" margin-top:60px;margin-left:50px"action="LogOut" method="POST">
 
     <input type="submit" value="Logout"> 
 </form>

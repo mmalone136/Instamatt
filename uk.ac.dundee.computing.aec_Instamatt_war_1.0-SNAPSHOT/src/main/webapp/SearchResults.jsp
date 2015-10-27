@@ -56,7 +56,14 @@
     Surname    :   <%=last%> <br>
     Username   :   <%=username%> <br>
 
-<li><a  href="/instamatt/profile/<%=username%>">User's Profile</a></li> 
+<!--<li><a  href="/instamatt/profile/<%//=username%>">User's Profile</a></li> -->
+
+
+<form method="GET" Action="profile/<%=username%>">
+     <input type="hidden" value="<%=username%>" name="username">
+    <input id="buttonTwo" type="submit" value="User's Profile">
+    
+</form>
 
 <br><br>
 <% }

@@ -31,16 +31,16 @@
         </nav>
     </head>
     <body id="page" style="display: inline-block">
-        <h1 style="margin-left:50px" >Soem relevant text</h1>
+        <h1 style="margin-left:50px" >Soem relevant text<br>
 
         <%
 
             String str = (String) request.getAttribute("pic");
             UUID pic = UUID.fromString(str);
-
+            String owner = (String) request.getAttribute("owner");
 
         %>
-
+        Owner: <%=owner%></h1>
         
         <img style="margin-left:75px" border="0" height="450px" src="/instamatt/Image/<%=pic%>" >
         
@@ -83,14 +83,34 @@
                 String user = lg.getUsername();
         %>
         
-        <form style="margin-top:100px; margin-left:100px" method="POST"  action="picture">
+        <form style="margin:100px" method="POST"  action="picture">
             <ul>
                 <li>Comment    <input style="margin-left:50px"type="text" maxlength="80" name="comment"></li><br><br>
                 <input type="hidden" name="user" value="<%=user%>">
                 <input type="hidden" name="picid" value="<%=pic%>">
+                <input type="hidden" value="<%=owner%>" name="owner">
             </ul>
             <input type="submit" value="Post Comment"> 
         </form>
-        <%}%>
+            
+            <!--loggedIn: <%//=user%>-->
+            
+            <%
+                if(user.equals(owner))
+                {
+            %>
+            <form style="margin:100px" method="POST"  action="../DeleteImage">
+            
+                USER: <%=lg.getUsername()%>
+                PICID: <%=pic%>
+                
+                <input type="hidden" name="user" value="<%=lg.getUsername()%>">
+                <input type="hidden" name="picid" value="<%=pic%>">
+            
+            <input type="submit" value="Delete This Image"> 
+        </form>
+            
+            
+        <%}}%>
     </body>
 </html>

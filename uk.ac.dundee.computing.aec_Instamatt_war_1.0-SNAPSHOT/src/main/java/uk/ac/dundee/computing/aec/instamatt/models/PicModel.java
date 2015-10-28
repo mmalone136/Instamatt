@@ -27,9 +27,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import static java.lang.System.out;
 import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.UUID;
 import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
@@ -75,12 +77,13 @@ public class PicModel {
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             Date DateAdded = new Date();
-            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, DateAdded, length, thumblength, processedlength, type, name));
+            Date d = DateAdded;
+            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf, processedbuf, user, d, length, thumblength, processedlength, type, name));
 
             if (check.equals("0")) {
                 PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
                 BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
-                session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
+                session.execute(bsInsertPicToUser.bind(picid, user, d));
             } else if (check.equals("1")) {
                 PreparedStatement psProfPic = session.prepare("UPDATE userprofiles SET profpic = ? where login = ?");
                 BoundStatement bsInsertProfPic = new BoundStatement(psProfPic);
@@ -220,5 +223,9 @@ public class PicModel {
         return p;
 
     }
+
+
+
+ 
 
 }

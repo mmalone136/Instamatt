@@ -74,6 +74,7 @@ public class picture extends HttpServlet {
                //processRequest(request, response);
 
         String picid = (String) request.getParameter("pic");
+        String owner = (String) request.getParameter("owner");
         Session session = cluster.connect("instamatt");
         UUID THINGS = UUID.fromString(picid);
         PreparedStatement ps = session.prepare("select comment,userleft,timeleft FROM comments WHERE picid =? ALLOW FILTERING ");
@@ -95,8 +96,10 @@ public class picture extends HttpServlet {
 
         }
 
-        String url = request.getRequestURL().toString();
-        String pic = url.substring(40);
+        //String url = request.getRequestURL().toString();
+        //String pic = url.substring(40);
+        request.setAttribute("owner",owner);
+        String pic = picid;
         request.setAttribute("pic", pic);
 
         RequestDispatcher rd = request.getRequestDispatcher("/SinglePic.jsp");
@@ -146,6 +149,8 @@ public class picture extends HttpServlet {
             throws ServletException, IOException {
 
         String comment = (String) request.getParameter("comment");
+        String owner = (String) request.getParameter("owner");
+        
 
         out.println("COMMENT | " + comment);
         String userleft = (String) request.getParameter("user");
@@ -202,10 +207,14 @@ public class picture extends HttpServlet {
             request.setAttribute("ComList", comList);
 
         }
-   
+        
+        request.setAttribute("owner", owner);
+        
+        //RequestDispatcher rd = request.getRequestDispatcher("../picture/" + picid);
         RequestDispatcher rd = request.getRequestDispatcher("../SinglePic.jsp");
         rd.forward(request, response);
-
+        //response.sendRedirect("../picture/" + picid);
+        
     }
 
     /**

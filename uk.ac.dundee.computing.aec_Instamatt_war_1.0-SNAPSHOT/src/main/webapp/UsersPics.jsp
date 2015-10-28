@@ -62,7 +62,7 @@
 
             <form method="GET" action="../picture/<%=p.getSUUID()%>" >
                 <input type="hidden" value="<%=p.getSUUID()%>" name="pic">
-
+                <input type="hidden" value="<%=curr%>" name="owner">
                 <input id="seven" type='image' name="submit" src="/instamatt/Thumb/<%=p.getSUUID()%>" border="0" height="275px" width="275px"/>
 
             </form>

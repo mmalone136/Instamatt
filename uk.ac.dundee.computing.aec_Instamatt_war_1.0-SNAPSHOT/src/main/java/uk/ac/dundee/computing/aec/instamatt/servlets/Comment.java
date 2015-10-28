@@ -67,6 +67,10 @@ public class Comment extends HttpServlet {
         processRequest(request, response);
     }
 
+    //THIS SERVLET IS NOW NOT USED : DELETE AT SOME POINT
+    
+    
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *

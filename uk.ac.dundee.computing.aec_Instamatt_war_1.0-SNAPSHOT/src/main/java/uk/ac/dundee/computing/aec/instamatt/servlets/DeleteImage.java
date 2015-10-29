@@ -140,21 +140,20 @@ public class DeleteImage extends HttpServlet {
 
     public Date getTime(UUID picid, String user) {
 
-        out.println("get da date");
         Date newDate = null;
         //newDate = null;
 
         Session session = cluster.connect("instamatt");
-        out.println("CONNECTED");
+        //out.println("CONNECTED");
         PreparedStatement ps = session.prepare("select pic_added,picid from userpiclist where user =?");
-        out.println("PS DONE");
+        //out.println("PS DONE");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
-        out.println("BS DONE");
+        //out.println("BS DONE");
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         user));
-        out.println("EXECUTED");
+        //out.println("EXECUTED");
 
         if (rs.isExhausted()) {
             System.out.println("No date returned");

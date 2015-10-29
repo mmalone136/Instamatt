@@ -96,42 +96,33 @@ public class DeleteImage extends HttpServlet {
         //out.println("WHAT IS HAPPENING?");
         //tm.deletePic(picid, user);
         
-        
-        out.println("Commence picture deletion");
-        try (Session session = cluster.connect("instamatt")) {
-            out.println("Connected to cluster");
+            Session session = cluster.connect("instamatt");
             //Delete From pics WHERE picid = '';
             //Delete From userpiclist WHERE user = 'instamattuser' AND pic_added =
-            
+
             UUID pic = null;
             pic = pic.fromString(picid);
-            
-            try{
-            Date d = getTime(pic, user);
-            
-            out.println("DATETIMETHING" + d);
-            
-            //Remove from userpics
-            PreparedStatement psUserPic = session.prepare("Delete From userpiclist WHERE user = ? AND pic_added =?");
-            BoundStatement bsUserPic = new BoundStatement(psUserPic);
-            session.execute(bsUserPic.bind(user, d));
-            out.println("Removal from piclist success - maybe");
+
+            try {
+                Date d = getTime(pic, user);
+
+                out.println("DATETIMETHING" + d);
+
+                //Remove from userpics
+                PreparedStatement psUserPic = session.prepare("Delete From userpiclist WHERE user = ? AND pic_added =?");
+                BoundStatement bsUserPic = new BoundStatement(psUserPic);
+                session.execute(bsUserPic.bind(user, d));
             //Deletes pic
-            
-            PreparedStatement psDeletePic = session.prepare("Delete From pics WHERE picid = ?");
-            BoundStatement bsDeletePic = new BoundStatement(psDeletePic);
-            session.execute(bsDeletePic.bind(pic));
-            out.println("Removal of pic success");
-            
-            }catch(Exception e){
-            out.println("Exception occurred during picture delete");
+
+                PreparedStatement psDeletePic = session.prepare("Delete From pics WHERE picid = ?");
+                BoundStatement bsDeletePic = new BoundStatement(psDeletePic);
+                session.execute(bsDeletePic.bind(pic));
+
+            } catch (Exception e) {
+                out.println("Exception occurred during picture delete");
             }
-        }
-
-
-        out.println("IS IT DONE?");
-
         
+
         //RequestDispatcher rd = request.getRequestDispatcher("../instamatt");
         //rd.forward(request, response);
         response.sendRedirect("../instamatt/index.jsp");
@@ -146,7 +137,8 @@ public class DeleteImage extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-   public Date getTime(UUID picid, String user) {
+
+    public Date getTime(UUID picid, String user) {
 
         out.println("get da date");
         Date newDate = null;
@@ -171,22 +163,13 @@ public class DeleteImage extends HttpServlet {
             Date d = new Date();
             for (Row row : rs) {
                 UUID id = row.getUUID("picid");
-                out.println("====================");
-                out.println("Compare ID | " + id);
-                out.println("Compare PICID | " + picid);
-                out.println("====================");
                 if (id.equals(picid)) {
-                    out.println("MATCH ID | PICID");
-                    out.println("MATCH ID | " + id);
-                    out.println("MATCH PICID | " + picid);
                     java.util.UUID UUID = row.getUUID("picid");
                     d = row.getDate("pic_added");
-                    out.println("pic_added   =====  " + d);
                 }
             }
             newDate = d;
         }
-        out.println("done apparently");
         return newDate;
     }
 }

@@ -101,8 +101,7 @@
             %>
             <form style="margin:100px" method="POST"  action="../DeleteImage">
             
-                USER: <%=lg.getUsername()%>
-                PICID: <%=pic%>
+
                 
                 <input type="hidden" name="user" value="<%=lg.getUsername()%>">
                 <input type="hidden" name="picid" value="<%=pic%>">

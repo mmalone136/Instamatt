@@ -47,6 +47,7 @@
 
 
         <br>
+        (Will update all values)
     </ul>
     <br>
     <input type="submit" value="UPDATE"> 

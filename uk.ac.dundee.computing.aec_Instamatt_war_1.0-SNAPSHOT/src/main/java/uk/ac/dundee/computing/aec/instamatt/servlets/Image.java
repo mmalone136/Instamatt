@@ -162,8 +162,11 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
+            if(check.equals("0")){  
                 path=("/upload.jsp");
-            
+            }else{
+                path=("/instamatt");
+            }
            
             RequestDispatcher rd = request.getRequestDispatcher(path);
              rd.forward(request, response);

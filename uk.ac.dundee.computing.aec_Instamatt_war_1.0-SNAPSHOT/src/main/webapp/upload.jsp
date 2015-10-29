@@ -32,16 +32,13 @@
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br>
                 <input type ="hidden" name="check" value="0">
-
                 <br>
-                <input type="submit" value="Press"> to upload the file!
-            </form>
+                <br>
+                <br><br>
+                <input type="submit" value="Press"> to upload the file!<br>
+            </form><br><br>
 
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/instamatt">Home</a></li>
-            </ul>
-        </footer>
+
     </body>
 </html>

@@ -210,10 +210,10 @@ public class picture extends HttpServlet {
         
         request.setAttribute("owner", owner);
         
-        //RequestDispatcher rd = request.getRequestDispatcher("../picture/" + picid);
+        
         RequestDispatcher rd = request.getRequestDispatcher("../SinglePic.jsp");
         rd.forward(request, response);
-        //response.sendRedirect("../picture/" + picid);
+        
         
     }
 

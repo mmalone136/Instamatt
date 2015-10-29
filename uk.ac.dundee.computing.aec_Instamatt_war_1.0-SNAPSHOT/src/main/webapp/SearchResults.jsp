@@ -29,12 +29,10 @@
     </nav>
 </head>
 <body id="page">
-    <h1>SEARCH RESULTS</h1>
+    <h1>USER SEARCH RESULTS</h1>
 
 
-    <article>
-    </article>
-    Put the results of the datas of things here
+    
 
     <%
         String found = (String) request.getAttribute("found");
